@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: GitHub Conventions
+    url: https://github.com/YOUR_ORG/YOUR_REPO/blob/main/docs/GITHUB_CONVENTIONS.md
+    about: Labels, milestones, sprint cadence, and repo setup
+  - name: Project Ground Truth
+    url: https://github.com/YOUR_ORG/YOUR_REPO/blob/main/docs/PROJECT.md
+    about: Product scope, phases, and sprint backlog (Section 18)

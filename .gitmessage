@@ -1,0 +1,16 @@
+# <type>(<scope>): <imperative summary ≤72 chars>
+#
+# Types: feat | fix | chore | docs | test | refactor | ci | ml | infra
+# Scopes: frontend | backend | agent | ml | infra | db | docs
+#
+# Body (optional) — explain why, wrap at 72 characters
+#
+# Refs #123
+#
+# Examples:
+#   feat(backend): add application kanban CRUD endpoints
+#   fix(frontend): persist kanban column after drag-and-drop
+#   ml: train embedding matcher baseline on JD dataset
+#
+# Enable this template: git config commit.template .gitmessage
+# Full guide: docs/COMMIT_CONVENTIONS.md

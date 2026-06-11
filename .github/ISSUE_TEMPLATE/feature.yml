@@ -1,0 +1,111 @@
+name: Feature
+description: New user-facing or agent capability
+title: "[area] "
+labels: ["type:feature"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        New capability. Branch: `feature/<issue#>-<slug>`
+        Title prefix: `[frontend]`, `[backend]`, `[ml]`, `[infra]`, or `[agent]`.
+        Conventions: [docs/GITHUB_CONVENTIONS.md](https://github.com/YOUR_ORG/YOUR_REPO/blob/main/docs/GITHUB_CONVENTIONS.md)
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - area:frontend
+        - area:backend
+        - area:ml
+        - area:infra
+        - area:agent
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - priority:P0
+        - priority:P1
+        - priority:P2
+        - priority:P3
+    validations:
+      required: true
+
+  - type: dropdown
+    id: sprint
+    attributes:
+      label: Sprint
+      description: Leave unset for backlog issues
+      options:
+        - sprint:0
+        - sprint:1
+        - sprint:2
+        - sprint:3
+        - "(backlog — no sprint label)"
+
+  - type: dropdown
+    id: assignee_role
+    attributes:
+      label: Primary owner
+      options:
+        - Person A (App + Infra)
+        - Person B (ML + Data + Agent)
+        - Both
+    validations:
+      required: true
+
+  - type: input
+    id: milestone
+    attributes:
+      label: Milestone
+      placeholder: Phase 1
+    validations:
+      required: true
+
+  - type: input
+    id: project_md_link
+    attributes:
+      label: PROJECT.md section link
+      placeholder: docs/PROJECT.md#phase-1--tracker-mvp--ide-shell
+    validations:
+      required: true
+
+  - type: input
+    id: parent_epic
+    attributes:
+      label: Parent epic issue (optional)
+      placeholder: "e.g. 42"
+
+  - type: dropdown
+    id: size
+    attributes:
+      label: Estimate
+      options:
+        - S (≤4 hours)
+        - M (1 day)
+        - L (2–3 days)
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      placeholder: Implement kanban CRUD API per API contract...
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance criteria
+      value: |
+        - [ ] 
+        - [ ] 
+        - [ ] 
+    validations:
+      required: true

@@ -1,0 +1,82 @@
+name: Fix
+description: Something broken or not working as specified
+title: "[area] "
+labels: ["type:fix"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Defect report. Branch: `fix/<issue#>-<slug>`
+        Conventions: [docs/GITHUB_CONVENTIONS.md](https://github.com/YOUR_ORG/YOUR_REPO/blob/main/docs/GITHUB_CONVENTIONS.md)
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - area:frontend
+        - area:backend
+        - area:ml
+        - area:infra
+        - area:agent
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - priority:P0 — blocks sprint / demo
+        - priority:P1 — major broken flow
+        - priority:P2 — minor / workaround exists
+        - priority:P3 — cosmetic
+    validations:
+      required: true
+
+  - type: input
+    id: project_md_link
+    attributes:
+      label: Expected behavior reference
+      placeholder: docs/PROJECT.md#issue-10--kanban-ui--csv-export--deadline-reminders
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Go to Applications kanban
+        2. Drag card from Applied to OA
+        3. Refresh page
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: |
+        - Branch: main
+        - Local: docker compose up
+        - Browser: Chrome 125
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / screenshots
