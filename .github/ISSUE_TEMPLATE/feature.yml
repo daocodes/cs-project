@@ -8,7 +8,6 @@ body:
       value: |
         New capability. Branch: `feature/<issue#>-<slug>`
         Title prefix: `[frontend]`, `[backend]`, `[ml]`, `[infra]`, or `[agent]`.
-        Conventions: [docs/GITHUB_CONVENTIONS.md](https://github.com/YOUR_ORG/YOUR_REPO/blob/main/docs/GITHUB_CONVENTIONS.md)
 
   - type: dropdown
     id: area
@@ -46,50 +45,6 @@ body:
         - sprint:2
         - sprint:3
         - "(backlog — no sprint label)"
-
-  - type: dropdown
-    id: assignee_role
-    attributes:
-      label: Primary owner
-      options:
-        - Person A (App + Infra)
-        - Person B (ML + Data + Agent)
-        - Both
-    validations:
-      required: true
-
-  - type: input
-    id: milestone
-    attributes:
-      label: Milestone
-      placeholder: Phase 1
-    validations:
-      required: true
-
-  - type: input
-    id: project_md_link
-    attributes:
-      label: PROJECT.md section link
-      placeholder: docs/PROJECT.md#phase-1--tracker-mvp--ide-shell
-    validations:
-      required: true
-
-  - type: input
-    id: parent_epic
-    attributes:
-      label: Parent epic issue (optional)
-      placeholder: "e.g. 42"
-
-  - type: dropdown
-    id: size
-    attributes:
-      label: Estimate
-      options:
-        - S (≤4 hours)
-        - M (1 day)
-        - L (2–3 days)
-    validations:
-      required: true
 
   - type: textarea
     id: description

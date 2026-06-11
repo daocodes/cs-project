@@ -96,16 +96,22 @@ Remove the previous sprint label when moving an issue to the next sprint.
 
 Each issue should be completable in ≤3 days by one person. If larger, split into sub-issues under a parent epic.
 
-### Required issue fields
+### Required issue fields (templates)
+
+Keep it minimal — the issue form only asks for:
 
 1. **Title** — `[area] Imperative summary` (e.g. `[frontend] Kanban drag-and-drop`)
-2. **Milestone** — Phase milestone from table above
-3. **Labels** — `area:*`, `type:*`, `priority:*`, `sprint:*` (if in active sprint)
-6. **Acceptance criteria** — Checkbox list (3–5 items)
+2. **Area** — `area:frontend`, `area:backend`, etc.
+3. **Priority** — `priority:P0`–`P3` (Fix template: severity dropdown)
+4. **Sprint** — `sprint:0`–`sprint:3` if in active sprint (optional for backlog)
+5. **Description** — what and why
+6. **Acceptance criteria** — checkbox list (3–5 items)
+
+**Not in the template** (add in GitHub sidebar only if you want): milestone, assignee, parent epic, PROJECT.md link, estimates.
 
 ### Epics and sub-issues
 
-- Create **sub-issues** for individual tasks; link via GitHub sub-issues.
+Optional for planning in [PROJECT.md Section 18](PROJECT.md#18-sprint-schedule--github-backlog). Link sub-issues in GitHub when useful; not required for every issue.
 
 
 

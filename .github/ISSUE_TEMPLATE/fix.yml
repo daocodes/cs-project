@@ -7,7 +7,6 @@ body:
     attributes:
       value: |
         Defect report. Branch: `fix/<issue#>-<slug>`
-        Conventions: [docs/GITHUB_CONVENTIONS.md](https://github.com/YOUR_ORG/YOUR_REPO/blob/main/docs/GITHUB_CONVENTIONS.md)
 
   - type: dropdown
     id: area
@@ -31,14 +30,6 @@ body:
         - priority:P1 — major broken flow
         - priority:P2 — minor / workaround exists
         - priority:P3 — cosmetic
-    validations:
-      required: true
-
-  - type: input
-    id: project_md_link
-    attributes:
-      label: Expected behavior reference
-      placeholder: docs/PROJECT.md#issue-10--kanban-ui--csv-export--deadline-reminders
     validations:
       required: true
 

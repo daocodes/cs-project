@@ -538,7 +538,7 @@ Store in `backend/data/roadmaps/`:
 
 Every issue below traces to this document. Create parent **epics** in GitHub first, then sub-issues. Issue numbers (`#1`, `#2`, …) are placeholders until created—replace with actual GitHub numbers and link sub-issues via GitHub's sub-issue feature.
 
-**How to use:** Copy each issue block into GitHub (or use `gh issue create`). Apply labels, milestone, sprint label, and assignee. Link sub-issues to the parent epic.
+**How to use:** Copy each issue block into GitHub (or use `gh issue create`). Apply labels and sprint label from the tables. Milestones, assignees, and epics are optional — use the issue templates for day-to-day work.
 
 ### Sprint calendar
 
@@ -1094,6 +1094,6 @@ After merging this doc into the repo:
 
 1. Create epics E0–E8 as parent issues (E8 in Backlog, not Sprint 3).
 2. Create sub-issues #1–#43; link each to its parent epic.
-3. Apply labels, milestones, sprint labels, and assignees from tables above.
+3. Apply labels and sprint labels from tables above (milestones and assignees optional).
 4. Add all Sprint 0 issues to the project board **Sprint** column on Jun 11.
 5. Run Sprint 0 planning: confirm WIP ≤2 issues per person.
