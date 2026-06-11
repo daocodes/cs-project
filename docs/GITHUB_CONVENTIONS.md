@@ -101,8 +101,6 @@ Each issue should be completable in ≤3 days by one person. If larger, split in
 1. **Title** — `[area] Imperative summary` (e.g. `[frontend] Kanban drag-and-drop`)
 2. **Milestone** — Phase milestone from table above
 3. **Labels** — `area:*`, `type:*`, `priority:*`, `sprint:*` (if in active sprint)
-4. **Assignee** — Person A, Person B, or both for paired work
-5. **PROJECT.md link** — Section reference in issue body
 6. **Acceptance criteria** — Checkbox list (3–5 items)
 
 ### Epics and sub-issues
