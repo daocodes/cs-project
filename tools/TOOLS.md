@@ -40,10 +40,10 @@ Conventions: [docs/GITHUB_CONVENTIONS.md](../docs/GITHUB_CONVENTIONS.md) · Back
 
 | Tool | Purpose | Command / path | Owner | Last verified |
 | :--- | :--- | :--- | :--- | :--- |
-| **pytest** | Backend unit and integration tests | `cd backend && pytest` | Person A | — |
-| **ruff** | Python lint + format | `cd backend && ruff check . && ruff format --check .` | Person A | — |
-| **eslint** | Frontend lint | `cd frontend && npm run lint` | Person A | — |
-| **TypeScript** | Frontend type check | `cd frontend && npm run typecheck` or `npx tsc --noEmit` | Person A | — |
+| **pytest** | Backend unit and integration tests | `cd backend && source .venv/bin/activate && python -m pytest` | Person A | 2026-06-17 |
+| **ruff** | Python lint + format | `cd backend && source .venv/bin/activate && python -m ruff check . && python -m ruff format --check .` | Person A | 2026-06-17 |
+| **eslint** | Frontend lint | `cd frontend && npm run lint` | Person A | 2026-06-17 |
+| **TypeScript** | Frontend type check | `cd frontend && npm run typecheck` or `npx tsc --noEmit` | Person A | 2026-06-17 |
 | **GitHub Actions CI** | Lint + test on every PR | `.github/workflows/` (Phase 0 #6) | Person A | — |
 | **Agent eval smoke** | 5 golden tasks on agent-touched PRs | `cd backend && python -m eval.run --smoke` (Phase 6 #35) | Person B | — |
 | **Agent eval full** | Weekly full golden set | `python -m eval.run --full` | Person B | — |
@@ -79,7 +79,7 @@ Conventions: [docs/GITHUB_CONVENTIONS.md](../docs/GITHUB_CONVENTIONS.md) · Back
 
 | Tool | Purpose | Command / path | Owner | Last verified |
 | :--- | :--- | :--- | :--- | :--- |
-| **Docker Compose** | Local full stack | `docker compose up` (repo root) | Person A | — |
+| **Docker Compose** | Local full stack | `docker compose up --build` (repo root) | Person A | 2026-06-17 |
 | **AWS CLI** | Deploy, Bedrock test, RDS admin | `aws` + documented profiles | Person A | — |
 | **ECS Fargate + RDS** | Production-like deploy | `docs/DEPLOY.md` (Phase 1 #11) | Person A | — |
 | **GitHub CLI (`gh`)** | Issues, PRs, releases | `gh issue create`, `gh pr create` | Both | 2026-06-11 |
@@ -92,7 +92,8 @@ Conventions: [docs/GITHUB_CONVENTIONS.md](../docs/GITHUB_CONVENTIONS.md) · Back
 | Tool | Purpose | Command / path | Owner | Last verified |
 | :--- | :--- | :--- | :--- | :--- |
 | **Commit template** | Consistent commit messages | `git config commit.template .gitmessage` | Both | 2026-06-11 |
-| **`.env.example`** | Document required env vars | Copy to `.env` locally | Both | — |
+| **`.env.example`** | Document required env vars | Copy to `.env` locally | Both | 2026-06-17 |
+| **Backend dev venv** | Install backend lint/test deps locally | `cd backend && python3 -m venv .venv && source .venv/bin/activate && python -m pip install -r requirements-dev.txt` | Person A | 2026-06-17 |
 | **Bedrock dev fallback** | Local dev without AWS | `BEDROCK_ENABLED=false` | Person A | — |
 | **Monaco / IDE shell** | Resume diff, agent output | `frontend/` components | Person A | — |
 
@@ -112,4 +113,5 @@ Also update **Last verified** on any row you re-tested.
 
 | Date | Change |
 | :--- | :--- |
+| 2026-06-17 | Verified Docker Compose local stack (`frontend` + `backend` + `postgres`), updated Compose command to `docker compose up --build`, verified `.env.example`, and verified frontend/backend pre-PR checks (`typecheck`, `eslint`, `ruff`, `pytest`) |
 | 2026-06-11 | Initial catalog — code review, testing, ML, agent, infra, local dev |
