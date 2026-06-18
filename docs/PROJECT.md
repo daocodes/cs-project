@@ -5,6 +5,33 @@
 
 ---
 
+## Recent Changes
+
+Last updated: 2026-06-17
+
+### Completed now
+
+- Phase 0 / Issue #1 ("Monorepo + Docker Compose local dev") is implemented and validated.
+- Added monorepo local-dev scaffold at repo root with:
+  - `docker-compose.yml`
+  - `frontend/` (Next.js + TypeScript baseline)
+  - `backend/` (FastAPI baseline)
+- Docker local stack now starts frontend, backend, and Postgres with one command: `docker compose up --build`.
+- Health checks verified:
+  - Frontend: `GET /api/health`
+  - Backend: `GET /health`
+- Added local environment templates and docs:
+  - `.env.example`
+  - `README.md` one-command startup instructions
+- Backend dependencies are now correctly scoped to `backend/requirements.txt` (no root Python requirements file).
+
+### Where to continue next
+
+- Continue Sprint 0 from Phase 0 Issues #2-#6 (GitHub conventions setup, AWS/Bedrock setup, `LLMProvider`, API contract, CI).
+- Then move to Phase 1 tracker MVP work (`#7` onward).
+
+---
+
 ## 1. One-liner
 
 An IDE-shaped command center for CS students during internship recruiting: track applications, discover tailored internships, close skill gaps with a prep roadmap, and orchestrate it all through a production-style AI agent—built on our own ML models, LangGraph orchestration, RAG, MCP, and AWS Bedrock.
@@ -577,10 +604,10 @@ Every issue below traces to this document. Create parent **epics** in GitHub fir
 
 **Acceptance criteria:**
 
-- [ ] Monorepo layout: `frontend/`, `backend/`, `docker-compose.yml`
-- [ ] `docker compose up` starts Next.js, FastAPI, and Postgres without manual steps
-- [ ] Health-check endpoints respond on frontend and backend
-- [ ] README documents one-command local setup
+- [x] Monorepo layout: `frontend/`, `backend/`, `docker-compose.yml`
+- [x] `docker compose up` starts Next.js, FastAPI, and Postgres without manual steps
+- [x] Health-check endpoints respond on frontend and backend
+- [x] README documents one-command local setup
 
 #### #2 — GitHub repo: milestones, labels, project board
 
