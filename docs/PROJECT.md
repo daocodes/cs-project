@@ -7,7 +7,7 @@
 
 ## Recent Changes
 
-Last updated: 2026-06-17
+Last updated: 2026-06-18
 
 ### Completed now
 
@@ -24,10 +24,12 @@ Last updated: 2026-06-17
   - `.env.example`
   - `README.md` one-command startup instructions
 - Backend dependencies are now correctly scoped to `backend/requirements.txt` (no root Python requirements file).
+- Added `docs/API_CONTRACT.md` with the Phase 1 Tracker API contract (health + applications CRUD + status history).
+- Added core SQLAlchemy tracker models and Alembic project wiring for migrations.
 
 ### Where to continue next
 
-- Continue Sprint 0 from Phase 0 Issues #2-#6 (GitHub conventions setup, AWS/Bedrock setup, `LLMProvider`, API contract, CI).
+- Continue Sprint 0 from Phase 0 Issues #2-#6 (GitHub conventions setup, AWS/Bedrock setup, `LLMProvider`, CI), plus finish remaining #5 items (initial migration revision file and partner sign-off).
 - Then move to Phase 1 tracker MVP work (`#7` onward).
 
 ---
@@ -649,9 +651,9 @@ Every issue below traces to this document. Create parent **epics** in GitHub fir
 
 **Acceptance criteria:**
 
-- [ ] SQLAlchemy models match Section 11 entities (core tables)
+- [x] SQLAlchemy models match Section 11 entities (core tables)
 - [ ] Initial Alembic migration runs against Postgres
-- [ ] `docs/API_CONTRACT.md` lists core REST endpoints for Phase 1
+- [x] `docs/API_CONTRACT.md` lists core REST endpoints for Phase 1
 - [ ] Both partners sign off before Sprint 0 parallel work splits
 
 #### #6 — GitHub Actions CI: lint + test on PR

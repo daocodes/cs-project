@@ -21,7 +21,7 @@ Conventions: [docs/GITHUB_CONVENTIONS.md](../docs/GITHUB_CONVENTIONS.md) · Back
 | :--- | :--- | :--- | :--- | :--- |
 | **Partner PR review** | Required human review per working agreements | GitHub PR → assign partner reviewer | Both | — |
 | **PR template checklist** | Standard review gates | [.github/pull_request_template.md](../.github/pull_request_template.md) | Both | 2026-06-11 |
-| **API contract check** | Backend changes match agreed endpoints | [docs/API_CONTRACT.md](../docs/API_CONTRACT.md) (Phase 0) | Person A | — |
+| **API contract check** | Backend changes match agreed endpoints | [docs/API_CONTRACT.md](../docs/API_CONTRACT.md) (Phase 0) | Person A | 2026-06-18 |
 | **Scope gate** | Changes trace to PROJECT.md | [docs/PROJECT.md](../docs/PROJECT.md) | Both | 2026-06-11 |
 
 ### Reviewer focus areas
@@ -84,6 +84,7 @@ Conventions: [docs/GITHUB_CONVENTIONS.md](../docs/GITHUB_CONVENTIONS.md) · Back
 | **ECS Fargate + RDS** | Production-like deploy | `docs/DEPLOY.md` (Phase 1 #11) | Person A | — |
 | **GitHub CLI (`gh`)** | Issues, PRs, releases | `gh issue create`, `gh pr create` | Both | 2026-06-11 |
 | **CloudWatch + Sentry** | Logs and error tracking (Phase 7) | AWS console / Sentry project | Person A | — |
+| **Alembic** | Database schema migrations and revision history | `cd backend && source .venv/bin/activate && python -m alembic revision --autogenerate -m "msg" && python -m alembic upgrade head` | Person A | 2026-06-18 |
 
 ---
 
@@ -113,5 +114,6 @@ Also update **Last verified** on any row you re-tested.
 
 | Date | Change |
 | :--- | :--- |
+| 2026-06-18 | Added `docs/API_CONTRACT.md` for Phase 1 endpoint contract, verified API contract review gate, and added Alembic migration command workflow to Infra tools |
 | 2026-06-17 | Verified Docker Compose local stack (`frontend` + `backend` + `postgres`), updated Compose command to `docker compose up --build`, verified `.env.example`, and verified frontend/backend pre-PR checks (`typecheck`, `eslint`, `ruff`, `pytest`) |
 | 2026-06-11 | Initial catalog — code review, testing, ML, agent, infra, local dev |
