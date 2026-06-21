@@ -21,7 +21,7 @@ type ActivityBarProps = {
 export default function ActivityBar({ active, onSelect }: ActivityBarProps) {
   return (
     <nav
-      className="flex w-12 flex-col items-center gap-1 py-2"
+      className="flex w-24 flex-col items-center gap-2 py-3"
       style={{ background: "var(--vscode-activitybar-bg)" }}
       aria-label="Activity Bar"
     >
@@ -34,15 +34,19 @@ export default function ActivityBar({ active, onSelect }: ActivityBarProps) {
             aria-label={activity.label}
             aria-pressed={isActive}
             onClick={() => onSelect(activity.key)}
-            className="flex h-12 w-12 items-center justify-center border-l-2"
+            className="group flex h-[68px] w-20 flex-col items-center justify-center gap-1.5 rounded-md border-l-2 px-1 transition-colors hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
             style={{
               borderColor: isActive ? "var(--vscode-accent)" : "transparent",
+              backgroundColor: isActive ? "rgba(255,255,255,0.08)" : "transparent",
               color: isActive
                 ? "var(--vscode-activitybar-fg)"
                 : "var(--vscode-activitybar-inactive-fg)",
             }}
           >
-            <span className={`codicon ${activity.icon} text-xl`} />
+            <span className={`codicon ${activity.icon} text-2xl`} />
+            <span className="text-center text-[11px] font-medium leading-tight">
+              {activity.label}
+            </span>
           </button>
         );
       })}

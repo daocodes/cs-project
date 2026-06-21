@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Allotment } from "allotment";
+import TitleBar from "./TitleBar";
 import ActivityBar, { type ActivityKey } from "./ActivityBar";
 import MainPanel from "./MainPanel";
 import BottomPanel from "./BottomPanel";
@@ -33,17 +34,20 @@ export default function IdeShell() {
   };
 
   return (
-    <div className="flex h-screen w-screen">
-      <ActivityBar active={active} onSelect={setActive} />
-      <div className="flex-1">
-        <Allotment vertical defaultSizes={panelSizes} onChange={handleChange}>
-          <Allotment.Pane>
-            <MainPanel active={active} />
-          </Allotment.Pane>
-          <Allotment.Pane preferredSize={200} minSize={80}>
-            <BottomPanel />
-          </Allotment.Pane>
-        </Allotment>
+    <div className="flex h-screen w-screen flex-col">
+      <TitleBar />
+      <div className="flex flex-1 overflow-hidden">
+        <ActivityBar active={active} onSelect={setActive} />
+        <div className="flex-1">
+          <Allotment vertical defaultSizes={panelSizes} onChange={handleChange}>
+            <Allotment.Pane>
+              <MainPanel active={active} />
+            </Allotment.Pane>
+            <Allotment.Pane preferredSize={200} minSize={80}>
+              <BottomPanel />
+            </Allotment.Pane>
+          </Allotment>
+        </div>
       </div>
     </div>
   );
