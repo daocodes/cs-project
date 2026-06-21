@@ -25,10 +25,12 @@ services:
       - .env
     environment:
       DATABASE_URL: ${DATABASE_URL:-postgresql+psycopg://internbase:internbase_dev_password@db:5432/internbase}
+      AWS_PROFILE: ${AWS_PROFILE:-internbase-dev}
     ports:
       - "${BACKEND_PORT:-8000}:8000"
     volumes:
       - ./backend:/app
+      - ~/.aws:/root/.aws:ro
     depends_on:
       db:
         condition: service_healthy
