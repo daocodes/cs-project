@@ -7,7 +7,7 @@
 
 ## Recent Changes
 
-Last updated: 2026-06-18
+Last updated: 2026-06-21
 
 ### Completed now
 
@@ -26,10 +26,12 @@ Last updated: 2026-06-18
 - Backend dependencies are now correctly scoped to `backend/requirements.txt` (no root Python requirements file).
 - Added `docs/API_CONTRACT.md` with the Phase 1 Tracker API contract (health + applications CRUD + status history).
 - Added core SQLAlchemy tracker models and Alembic project wiring for migrations.
+- Added GitHub Actions CI workflow at `.github/workflows/ci.yml` for backend (`ruff` + `pytest`) and frontend (`eslint` + `typecheck`) PR checks.
+- Added backend smoke test `backend/tests/test_health.py` so CI `pytest` has a real test target.
 
 ### Where to continue next
 
-- Continue Sprint 0 from Phase 0 Issues #2-#6 (GitHub conventions setup, AWS/Bedrock setup, `LLMProvider`, CI), plus finish remaining #5 items (initial migration revision file and partner sign-off).
+- Continue Sprint 0 from Phase 0 Issues #2-#6 (GitHub conventions setup, AWS/Bedrock setup, `LLMProvider`, CI), plus finish remaining #5/#6 process items (partner sign-off and branch protection required checks).
 - Then move to Phase 1 tracker MVP work (`#7` onward).
 
 ---
@@ -652,7 +654,7 @@ Every issue below traces to this document. Create parent **epics** in GitHub fir
 **Acceptance criteria:**
 
 - [x] SQLAlchemy models match Section 11 entities (core tables)
-- [ ] Initial Alembic migration runs against Postgres
+- [x] Initial Alembic migration runs against Postgres
 - [x] `docs/API_CONTRACT.md` lists core REST endpoints for Phase 1
 - [ ] Both partners sign off before Sprint 0 parallel work splits
 
@@ -662,9 +664,9 @@ Every issue below traces to this document. Create parent **epics** in GitHub fir
 
 **Acceptance criteria:**
 
-- [ ] Workflow runs on pull request to `main`
-- [ ] Backend: `ruff` + `pytest` (at least smoke test)
-- [ ] Frontend: `eslint` + `tsc --noEmit` (or equivalent)
+- [x] Workflow runs on pull request to `main`
+- [x] Backend: `ruff` + `pytest` (at least smoke test)
+- [x] Frontend: `eslint` + `tsc --noEmit` (or equivalent)
 - [ ] CI status required for merge
 
 ---
