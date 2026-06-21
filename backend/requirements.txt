@@ -5,3 +5,5 @@ psycopg[binary]
 sqlalchemy
 pydantic-settings
 alembic
+boto3
+anthropic
