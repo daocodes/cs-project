@@ -24,7 +24,7 @@ services:
     env_file:
       - .env
     environment:
-      DATABASE_URL: ${DATABASE_URL:-postgresql://internbase:internbase_dev_password@db:5432/internbase}
+      DATABASE_URL: ${DATABASE_URL:-postgresql+psycopg://internbase:internbase_dev_password@db:5432/internbase}
     ports:
       - "${BACKEND_PORT:-8000}:8000"
     volumes:
