@@ -242,7 +242,7 @@ For the **agent layer**, we use LangGraph/LlamaIndex intentionally (framework fa
 
 * Enable Bedrock model access in AWS console.
 * IAM role for ECS: `bedrock:InvokeModel`, `bedrock:InvokeModelWithResponseStream`.
-* Default model: Claude 3.5 Sonnet on Bedrock; Haiku for routing/planning, Sonnet for tailoring.
+* Default model: Claude Sonnet 4.5 on Bedrock (Claude 3.5 Sonnet was retired); Haiku for routing/planning, Sonnet for tailoring.
 * Streaming for agent chat UI.
 * Billing alarms on day one.
 
