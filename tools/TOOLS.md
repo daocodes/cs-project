@@ -44,7 +44,7 @@ Conventions: [docs/GITHUB_CONVENTIONS.md](../docs/GITHUB_CONVENTIONS.md) · Back
 | **ruff** | Python lint + format | `cd backend && source .venv/bin/activate && python -m ruff check . && python -m ruff format --check .` | Person A | 2026-06-17 |
 | **eslint** | Frontend lint | `cd frontend && npm run lint` | Person A | 2026-06-17 |
 | **TypeScript** | Frontend type check | `cd frontend && npm run typecheck` or `npx tsc --noEmit` | Person A | 2026-06-17 |
-| **GitHub Actions CI** | Lint + test on every PR | `.github/workflows/` (Phase 0 #6) | Person A | — |
+| **GitHub Actions CI** | Lint + test on every PR | `.github/workflows/` (Phase 0 #6) | Person A | 2026-06-25 |
 | **Agent eval smoke** | 5 golden tasks on agent-touched PRs | `cd backend && python -m eval.run --smoke` (Phase 6 #35) | Person B | — |
 | **Agent eval full** | Weekly full golden set | `python -m eval.run --full` | Person B | — |
 
@@ -114,6 +114,7 @@ Also update **Last verified** on any row you re-tested.
 
 | Date | Change |
 | :--- | :--- |
+| 2026-06-25 | Updated frontend CI install step in `.github/workflows/ci.yml` from `npm ci` to `npm install` to prevent lockfile sync failures; re-verified frontend checks (`npm run lint`, `npm run typecheck`) |
 | 2026-06-18 | Added `docs/API_CONTRACT.md` for Phase 1 endpoint contract, verified API contract review gate, and added Alembic migration command workflow to Infra tools |
 | 2026-06-17 | Verified Docker Compose local stack (`frontend` + `backend` + `postgres`), updated Compose command to `docker compose up --build`, verified `.env.example`, and verified frontend/backend pre-PR checks (`typecheck`, `eslint`, `ruff`, `pytest`) |
 | 2026-06-11 | Initial catalog — code review, testing, ML, agent, infra, local dev |

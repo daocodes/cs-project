@@ -7,7 +7,7 @@
 
 ## Recent Changes
 
-Last updated: 2026-06-21
+Last updated: 2026-06-25
 
 ### Completed now
 
@@ -28,6 +28,8 @@ Last updated: 2026-06-21
 - Added core SQLAlchemy tracker models and Alembic project wiring for migrations.
 - Added GitHub Actions CI workflow at `.github/workflows/ci.yml` for backend (`ruff` + `pytest`) and frontend (`eslint` + `typecheck`) PR checks.
 - Added backend smoke test `backend/tests/test_health.py` so CI `pytest` has a real test target.
+- Updated frontend CI install step from `npm ci` to `npm install` to avoid lockfile drift failures caused by transitive dependency metadata changes.
+- Revalidated frontend CI commands locally: `npm install`, `npm run lint`, and `npm run typecheck` all pass.
 
 ### Where to continue next
 
