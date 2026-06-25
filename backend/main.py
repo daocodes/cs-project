@@ -1,8 +1,10 @@
 from fastapi import FastAPI
 
 from app.llm import get_llm_provider
+from app.routers.applications import router as applications_router
 
 app = FastAPI()
+app.include_router(applications_router)
 
 
 @app.get("/")

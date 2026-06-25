@@ -37,4 +37,6 @@ class Application(Base):
 
     user = relationship("User", back_populates="applications")
     job_posting = relationship("JobPosting", back_populates="applications")
-    status_events = relationship("StatusEvent", back_populates="application")
+    status_events = relationship(
+        "StatusEvent", back_populates="application", cascade="all, delete-orphan"
+    )
