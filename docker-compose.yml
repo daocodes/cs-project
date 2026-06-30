@@ -42,6 +42,7 @@ services:
     container_name: internbase-frontend
     environment:
       NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8000}
+      NEXT_PUBLIC_AUTH_MODE: ${NEXT_PUBLIC_AUTH_MODE:-mock}
     ports:
       - "${FRONTEND_PORT:-3000}:3000"
     volumes:

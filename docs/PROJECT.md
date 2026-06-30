@@ -33,8 +33,8 @@ Last updated: 2026-06-25
 
 ### Where to continue next
 
-- Continue Sprint 0 from Phase 0 Issues #2-#6 (GitHub conventions setup, AWS/Bedrock setup, `LLMProvider`, CI), plus finish remaining #5/#6 process items (partner sign-off and branch protection required checks).
-- Then move to Phase 1 tracker MVP work (`#7` onward).
+- Phase 0 is complete (Issues #1-#6 accepted).
+- Continue with Phase 1 tracker MVP work (`#7` onward).
 
 ---
 
@@ -621,11 +621,11 @@ Every issue below traces to this document. Create parent **epics** in GitHub fir
 
 **Acceptance criteria:**
 
-- [ ] Milestones `Phase 0`–`Phase 7` and `v1.0.0-jul10` created
-- [ ] All labels from conventions doc applied
-- [ ] Project board columns: Backlog → Sprint → In Progress → In Review → Done
-- [ ] Branch protection on `main` (PR + 1 review required)
-- [ ] Sub-issues enabled in repo settings
+- [x] Milestones `Phase 0`–`Phase 7` and `v1.0.0-jul10` created
+- [x] All labels from conventions doc applied
+- [x] Project board columns: Backlog → Sprint → In Progress → In Review → Done
+- [x] Branch protection on `main` (PR + 1 review required)
+- [x] Sub-issues enabled in repo settings
 
 #### #3 — AWS account + Bedrock access + billing alarms
 
@@ -633,10 +633,10 @@ Every issue below traces to this document. Create parent **epics** in GitHub fir
 
 **Acceptance criteria:**
 
-- [ ] AWS account created; all 5 credit onboarding activities completed
-- [ ] Claude model access enabled in Bedrock console
-- [ ] Billing alarms at $30 and $50 configured
-- [ ] IAM user/role documented for local dev (no keys in repo)
+- [x] AWS account created; all 5 credit onboarding activities completed
+- [x] Claude model access enabled in Bedrock console
+- [x] Billing alarms at $30 and $50 configured
+- [x] IAM user/role documented for local dev (no keys in repo)
 
 #### #4 — `LLMProvider` abstraction + Bedrock invoke
 
@@ -644,10 +644,10 @@ Every issue below traces to this document. Create parent **epics** in GitHub fir
 
 **Acceptance criteria:**
 
-- [ ] `LLMProvider` interface with `BedrockProvider` implementation
-- [ ] Dev fallback when `BEDROCK_ENABLED=false` (mock or direct API)
-- [ ] Backend endpoint or script proves successful Bedrock invoke
-- [ ] Env vars documented in `.env.example`
+- [x] `LLMProvider` interface with `BedrockProvider` implementation
+- [x] Dev fallback when `BEDROCK_ENABLED=false` (mock or direct API)
+- [x] Backend endpoint or script proves successful Bedrock invoke
+- [x] Env vars documented in `.env.example`
 
 #### #5 — Data model + API contract document
 
@@ -658,7 +658,7 @@ Every issue below traces to this document. Create parent **epics** in GitHub fir
 - [x] SQLAlchemy models match Section 11 entities (core tables)
 - [x] Initial Alembic migration runs against Postgres
 - [x] `docs/API_CONTRACT.md` lists core REST endpoints for Phase 1
-- [ ] Both partners sign off before Sprint 0 parallel work splits
+- [x] Both partners sign off before Sprint 0 parallel work splits
 
 #### #6 — GitHub Actions CI: lint + test on PR
 
@@ -669,7 +669,7 @@ Every issue below traces to this document. Create parent **epics** in GitHub fir
 - [x] Workflow runs on pull request to `main`
 - [x] Backend: `ruff` + `pytest` (at least smoke test)
 - [x] Frontend: `eslint` + `tsc --noEmit` (or equivalent)
-- [ ] CI status required for merge
+- [x] CI status required for merge
 
 ---
 
