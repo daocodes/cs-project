@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import Literal
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -9,6 +10,12 @@ ROOT_DIR = (
 
 class Settings(BaseSettings):
     database_url: str
+    auth_mode: Literal["mock", "cognito"] = "mock"
+    mock_user_id: int = 1
+    mock_user_email: str = "dev@internbase.local"
+    cognito_user_pool_id: str | None = None
+    cognito_client_id: str | None = None
+    cognito_region: str | None = None
 
     bedrock_enabled: bool = True
     aws_region: str = "us-east-1"

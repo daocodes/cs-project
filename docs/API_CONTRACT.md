@@ -20,7 +20,10 @@ This document defines the backend REST contract for Tracker MVP work.
 
 - Base URL (local): `http://localhost:8000`
 - Content type: `application/json`
-- Auth: deferred in Phase 1. Endpoints use a placeholder `user_id` until auth is wired.
+- Auth: required for `/applications*` routes via backend `get_current_user` dependency.
+  - Current local mode: mock auth (`AUTH_MODE=mock`).
+  - Planned production mode: Cognito token verification (`AUTH_MODE=cognito`).
+  - Client does not send `user_id`; backend derives ownership from current user context.
 - Datetime format (future fields): ISO 8601 UTC string.
 
 ## Enums
@@ -42,6 +45,7 @@ For contract consistency, endpoints should return:
 Common statuses:
 
 - `400` bad request / validation failure
+- `401` unauthorized / missing auth context
 - `404` resource not found
 - `409` conflict (future use)
 - `422` schema validation error (FastAPI default)
@@ -75,9 +79,8 @@ Common statuses:
 
 ### `GET /applications`
 
-- Purpose: list applications for a user.
+- Purpose: list applications for the authenticated user.
 - Query params:
-  - `user_id` (required for now, int)
   - `status` (optional, `ApplicationStatus`)
 - Response `200`:
 
@@ -100,7 +103,6 @@ Common statuses:
 
 ```json
 {
-  "user_id": 10,
   "job_posting_id": 25,
   "status": "SAVED",
   "notes": "Draft entry"
@@ -121,7 +123,7 @@ Common statuses:
 
 ### `GET /applications/{application_id}`
 
-- Purpose: fetch one application by id.
+- Purpose: fetch one application by id, scoped to authenticated ownership.
 - Response `200`:
 
 ```json
@@ -136,7 +138,7 @@ Common statuses:
 
 ### `PATCH /applications/{application_id}`
 
-- Purpose: partial update for editable fields.
+- Purpose: partial update for editable fields on an owned application.
 - Editable fields:
   - `status`
   - `notes`
@@ -164,12 +166,12 @@ Common statuses:
 
 ### `DELETE /applications/{application_id}`
 
-- Purpose: delete an application.
+- Purpose: delete an owned application.
 - Response `204`: no body.
 
 ### `GET /applications/{application_id}/status-events`
 
-- Purpose: read status transition history for one application.
+- Purpose: read status transition history for one owned application.
 - Response `200`:
 
 ```json

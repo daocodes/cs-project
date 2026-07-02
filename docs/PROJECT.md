@@ -7,7 +7,7 @@
 
 ## Recent Changes
 
-Last updated: 2026-06-25
+Last updated: 2026-07-02
 
 ### Completed now
 
@@ -30,11 +30,57 @@ Last updated: 2026-06-25
 - Added backend smoke test `backend/tests/test_health.py` so CI `pytest` has a real test target.
 - Updated frontend CI install step from `npm ci` to `npm install` to avoid lockfile drift failures caused by transitive dependency metadata changes.
 - Revalidated frontend CI commands locally: `npm install`, `npm run lint`, and `npm run typecheck` all pass.
+- Started hybrid auth implementation for Phase 1 (`mock` + `cognito` modes): added backend auth scaffolding under `backend/app/auth/` and auth settings in `.env.example`.
+- Updated applications router ownership model to use `current_user` dependency and scope CRUD/status-event access by authenticated user id.
 
 ### Where to continue next
 
 - Phase 0 is complete (Issues #1-#6 accepted).
-- Continue with Phase 1 tracker MVP work (`#7` onward).
+- Continue with Phase 1 tracker MVP work (`#7` onward), prioritizing auth completion (`#8`) and tracker endpoint test updates (`#9`).
+
+#### Immediate next actions (detailed)
+
+1. **Finish backend auth wiring for `#8` (mock-first hybrid path)**
+   - Ensure `backend/app/auth/` files are consistent:
+     - `mock.py`: `resolve_user(...)` method name matches dependency usage.
+     - `cognito.py`: keep explicit placeholder behavior if JWT verification is not complete yet.
+     - `factory.py`: selects verifier from `AUTH_MODE`.
+     - `deps.py`: `get_current_user` returns `CurrentUser` or raises `401`.
+   - Confirm `backend/app/core/settings.py` contains and loads:
+     - `auth_mode`, `mock_user_id`, `mock_user_email`, `cognito_user_pool_id`, `cognito_client_id`, `cognito_region`.
+   - Confirm `.env.example` documents auth-mode variables.
+
+2. **Complete tracker API ownership model for `#9`**
+   - In `backend/app/routers/applications.py`:
+     - all routes use `current_user: CurrentUser = Depends(get_current_user)`.
+     - list/create derive ownership from `current_user.id`.
+     - get/patch/delete/status-events enforce owned-resource lookup.
+   - In `backend/app/schemas/application.py`:
+     - keep `ApplicationCreate` without `user_id`.
+     - keep `ApplicationOut.user_id` in responses.
+
+3. **Update backend tests to match auth-based ownership**
+   - In `backend/tests/conftest.py`:
+     - override `get_current_user` in addition to `get_db`.
+     - use a mutable auth context fixture so tests can switch user identity.
+   - In `backend/tests/test_applications.py`:
+     - remove any client-supplied `user_id` assumptions.
+     - ensure create/list tests rely on dependency-injected current user.
+     - add ownership protection test:
+       - user A creates application,
+       - user B cannot `GET`, `PATCH`, or `DELETE` that application (`404` policy).
+
+4. **Verification before opening PR**
+   - Run backend checks:
+     - `cd backend && python -m pytest`
+     - `cd backend && python -m ruff check .`
+   - Spot-check API contract alignment in `docs/API_CONTRACT.md` against implemented behavior.
+
+5. **Finish remaining `#8` acceptance criteria (frontend/auth UX)**
+   - Add sign-in/session persistence behavior in frontend.
+   - Add protected route redirect for unauthenticated users.
+   - Document auth flow in `README.md`.
+   - If Cognito remains deferred, create/link follow-up issue for full Cognito verification and callback flow.
 
 ---
 
@@ -710,6 +756,7 @@ Every issue below traces to this document. Create parent **epics** in GitHub fir
 - [ ] Protected routes redirect unauthenticated users
 - [ ] If Cognito blocked: chore issue documents mock-auth path with follow-up feature issue
 - [ ] Auth flow documented in README
+- [x] Backend auth abstraction scaffolded (`AUTH_MODE`, mock verifier, Cognito verifier placeholder, `get_current_user` dependency)
 
 #### #9 — Application kanban CRUD API
 

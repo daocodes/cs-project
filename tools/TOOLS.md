@@ -96,6 +96,7 @@ Conventions: [docs/GITHUB_CONVENTIONS.md](../docs/GITHUB_CONVENTIONS.md) · Back
 | **`.env.example`** | Document required env vars | Copy to `.env` locally | Both | 2026-06-17 |
 | **Backend dev venv** | Install backend lint/test deps locally | `cd backend && python3 -m venv .venv && source .venv/bin/activate && python -m pip install -r requirements-dev.txt` | Person A | 2026-06-17 |
 | **Bedrock dev fallback** | Local dev without AWS | `BEDROCK_ENABLED=false` | Person A | — |
+| **Auth mode toggle** | Switch local auth provider between mock and Cognito | `AUTH_MODE=mock|cognito` and `NEXT_PUBLIC_AUTH_MODE=mock|cognito` in `.env` | Person A | 2026-07-02 |
 | **Monaco / IDE shell** | Resume diff, agent output | `frontend/` components | Person A | — |
 
 ---
@@ -114,6 +115,7 @@ Also update **Last verified** on any row you re-tested.
 
 | Date | Change |
 | :--- | :--- |
+| 2026-07-02 | Added hybrid auth mode env toggles (`AUTH_MODE`, `NEXT_PUBLIC_AUTH_MODE`), scaffolded backend auth provider files, and updated applications API ownership to rely on authenticated user context |
 | 2026-06-25 | Updated frontend CI install step in `.github/workflows/ci.yml` from `npm ci` to `npm install` to prevent lockfile sync failures; re-verified frontend checks (`npm run lint`, `npm run typecheck`) |
 | 2026-06-18 | Added `docs/API_CONTRACT.md` for Phase 1 endpoint contract, verified API contract review gate, and added Alembic migration command workflow to Infra tools |
 | 2026-06-17 | Verified Docker Compose local stack (`frontend` + `backend` + `postgres`), updated Compose command to `docker compose up --build`, verified `.env.example`, and verified frontend/backend pre-PR checks (`typecheck`, `eslint`, `ruff`, `pytest`) |
