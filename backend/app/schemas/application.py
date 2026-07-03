@@ -4,7 +4,6 @@ from app.models.application import ApplicationStatus
 
 
 class ApplicationCreate(BaseModel):
-    user_id: int
     job_posting_id: int
     status: ApplicationStatus = ApplicationStatus.SAVED
     notes: str | None = None

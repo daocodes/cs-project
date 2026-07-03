@@ -1,32 +1,38 @@
-def test_create_and_get_application(client, job_posting):
-    create_response = client.post(
-        "/applications", json={**job_posting, "status": "SAVED"}
-    )
+def test_create_and_get_application(client, job_posting, auth_context):
+    create_response = client.post("/applications", json={**job_posting, "status": "SAVED"})
     assert create_response.status_code == 201
-    application_id = create_response.json()["id"]
+    created = create_response.json()
+    application_id = created["id"]
+    assert created["user_id"] == auth_context["id"]
+    assert created["job_posting_id"] == job_posting["job_posting_id"]
 
     get_response = client.get(f"/applications/{application_id}")
     assert get_response.status_code == 200
-    assert get_response.json()["status"] == "SAVED"
+    retrieved = get_response.json()
+    assert retrieved["status"] == "SAVED"
+    assert retrieved["user_id"] == auth_context["id"]
 
 
-def test_list_applications_by_user(client, job_posting):
+def test_list_applications_by_user(client, job_posting, auth_context):
     client.post("/applications", json={**job_posting, "status": "SAVED"})
 
     response = client.get("/applications")
     assert response.status_code == 200
     assert len(response.json()) == 1
 
+    auth_context["id"] = 2
+    auth_context["email"] = "other@example.com"
+    auth_context["auth_id"] = "mock-auth-2"
+    other_user_response = client.get("/applications")
+    assert other_user_response.status_code == 200
+    assert other_user_response.json() == []
+
 
 def test_patch_status_creates_status_event(client, job_posting):
-    create_response = client.post(
-        "/applications", json={**job_posting, "status": "SAVED"}
-    )
+    create_response = client.post("/applications", json={**job_posting, "status": "SAVED"})
     application_id = create_response.json()["id"]
 
-    patch_response = client.patch(
-        f"/applications/{application_id}", json={"status": "APPLIED"}
-    )
+    patch_response = client.patch(f"/applications/{application_id}", json={"status": "APPLIED"})
     assert patch_response.status_code == 200
     assert patch_response.json()["status"] == "APPLIED"
 
@@ -39,9 +45,7 @@ def test_patch_status_creates_status_event(client, job_posting):
 
 
 def test_delete_application(client, job_posting):
-    create_response = client.post(
-        "/applications", json={**job_posting, "status": "SAVED"}
-    )
+    create_response = client.post("/applications", json={**job_posting, "status": "SAVED"})
     application_id = create_response.json()["id"]
 
     delete_response = client.delete(f"/applications/{application_id}")
@@ -57,11 +61,29 @@ def test_get_missing_application_returns_404(client):
 
 
 def test_delete_application_with_status_events(client, job_posting):
-    create_response = client.post(
-        "/applications", json={**job_posting, "status": "SAVED"}
-    )
+    create_response = client.post("/applications", json={**job_posting, "status": "SAVED"})
     application_id = create_response.json()["id"]
     client.patch(f"/applications/{application_id}", json={"status": "APPLIED"})
 
     delete_response = client.delete(f"/applications/{application_id}")
     assert delete_response.status_code == 204
+
+
+def test_owned_resource_returns_404_for_other_user(client, job_posting, auth_context):
+    create_response = client.post("/applications", json={**job_posting, "status": "SAVED"})
+    application_id = create_response.json()["id"]
+
+    auth_context["id"] = 99
+    auth_context["email"] = "another-user@example.com"
+    auth_context["auth_id"] = "mock-auth-99"
+
+    get_response = client.get(f"/applications/{application_id}")
+    assert get_response.status_code == 404
+
+    patch_response = client.patch(
+        f"/applications/{application_id}", json={"status": "APPLIED"}
+    )
+    assert patch_response.status_code == 404
+
+    delete_response = client.delete(f"/applications/{application_id}")
+    assert delete_response.status_code == 404
