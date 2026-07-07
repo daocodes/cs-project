@@ -7,7 +7,7 @@
 
 ## Recent Changes
 
-Last updated: 2026-07-02
+Last updated: 2026-07-07
 
 ### Completed now
 
@@ -32,6 +32,10 @@ Last updated: 2026-07-02
 - Revalidated frontend CI commands locally: `npm install`, `npm run lint`, and `npm run typecheck` all pass.
 - Started hybrid auth implementation for Phase 1 (`mock` + `cognito` modes): added backend auth scaffolding under `backend/app/auth/` and auth settings in `.env.example`.
 - Updated applications router ownership model to use `current_user` dependency and scope CRUD/status-event access by authenticated user id.
+- Added frontend auth foundations for issue `#8` under `frontend/lib/auth/`:
+  - `types.ts` defines `AuthMode`, `AuthUser`, and `AuthProvider`.
+  - `config.ts` resolves `NEXT_PUBLIC_AUTH_MODE` with safe fallback to `mock`.
+  - `factory.ts` adds `MockAuthProvider` session persistence and a Cognito placeholder provider.
 
 ### Where to continue next
 
@@ -81,6 +85,8 @@ Last updated: 2026-07-02
    - Add protected route redirect for unauthenticated users.
    - Document auth flow in `README.md`.
    - If Cognito remains deferred, create/link follow-up issue for full Cognito verification and callback flow.
+   - Implement `frontend/lib/auth/AuthContext.tsx` and wrap app in auth provider.
+   - Add `/signin` page and protect app routes in `frontend/pages/_app.tsx`.
 
 ---
 
